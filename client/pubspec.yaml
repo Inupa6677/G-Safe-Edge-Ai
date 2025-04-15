@@ -9,7 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sensors_plus: ^4.0.2  
+  sensors_plus: ^4.0.2
+  percent_indicator: ^4.2.2  
 
 dev_dependencies:
   flutter_test:
@@ -18,3 +19,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/logo.png
