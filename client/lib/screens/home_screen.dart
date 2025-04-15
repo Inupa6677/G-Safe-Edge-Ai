@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'trip_screen.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,11 +24,11 @@ class HomeScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (_) => TripScreen()),
                 );
               },
-              child: Text("Start Trip"),
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                 textStyle: TextStyle(fontSize: 20),
               ),
+              child: Text("Start Trip"),
             ),
           ],
         ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class TripSummaryScreen extends StatelessWidget {
+  const TripSummaryScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final int tripScore = 87;
