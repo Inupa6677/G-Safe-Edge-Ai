@@ -55,9 +55,9 @@ class _SensorPredictionScreenState extends State<SensorPredictionScreen> {
         _gyroMagnitude = gyroEvent.z.abs();
 
         gyroData.add({
-          'x': gyroEvent.x,
-          'y': gyroEvent.y,
-          'z': gyroEvent.z,
+          'x': 0,
+          'y': 0,
+          'z': 0,
         });
       });
 
