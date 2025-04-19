@@ -14,14 +14,17 @@ class ApiService {
       'gyro_data': gyroData,
     };
 
-    final url = Uri.parse("http://192.168.1.102:7071/api/trip_summary");
+    final url = Uri.parse("https://test-mn.azurewebsites.net/api/trip_summary");
 
     try {
       final response = await http.post(
         url,
-        headers: {"Content-Type": "application/json"},
+        headers: {"Content-Type": "application/json",
+                  "x-functions-key": "SoUAjr1QQaEHYHiq4dzjQWx8V3hf7VmJ5BUJ5ADUnvYcAzFulcE-zA=="},
         body: jsonEncode(payload),
-      );
+        );
+      
+      
 
       if (response.statusCode == 200) {
         print("✅ Data uploaded successfully!");

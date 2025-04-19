@@ -8,32 +8,39 @@ class SummaryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text("Trip Summary"),
+        title: const Text(
+          'Trip Summary',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.teal,
+        elevation: 2,
         leading: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: Padding(
+      body: ListView(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SummaryItem(
-              title: "Harsh Braking",
-              data: summary["harsh_breaking"],
-            ),
-            SummaryItem(
-              title: "Sudden Acceleration",
-              data: summary["sudden_acceleration"],
-            ),
-            SummaryItem(
-              title: "Sudden Turn",
-              data: summary["sudden_turn"],
-            ),
-          ],
-        ),
+        children: [
+          SummaryItem(
+            title: 'Harsh Braking',
+            data: summary['harsh_breaking'],
+          ),
+          SummaryItem(
+            title: 'Sudden Acceleration',
+            data: summary['sudden_acceleration'],
+          ),
+          SummaryItem(
+            title: 'Sudden Turn',
+            data: summary['sudden_turn'],
+          ),
+        ],
       ),
     );
   }
@@ -45,15 +52,70 @@ class SummaryItem extends StatelessWidget {
 
   const SummaryItem({super.key, required this.title, required this.data});
 
+  IconData _iconForTitle() {
+    switch (title) {
+      case 'Harsh Braking':
+        return Icons.dangerous;
+      case 'Sudden Acceleration':
+        return Icons.speed;
+      case 'Sudden Turn':
+        return Icons.sync_alt;
+      default:
+        return Icons.show_chart;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      elevation: 4,
       margin: const EdgeInsets.only(bottom: 16.0),
-      elevation: 3,
-      child: ListTile(
-        title: Text(title),
-        subtitle: Text(
-            "Count: ${data["count"]}\nPercentage: ${data["percentage"].toStringAsFixed(2)}%"),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(
+              _iconForTitle(),
+              size: 32,
+              color: Colors.teal,
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    "Count: ${data['count']}",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    "Percentage: ${data['percentage'].toStringAsFixed(2)}%",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black54,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

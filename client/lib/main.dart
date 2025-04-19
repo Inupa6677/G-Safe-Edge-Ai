@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'screens/sensor_prediction_screen.dart';
+import 'screens/splash_screen.dart';
 import 'services/notification_service.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   NotificationService.initializeNotifications(); 
 
@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Sensor App',
-      home: SensorPredictionScreen(),
+      title: 'G Safe',
+      home: SplashScreen(), // Launch splash first
     );
   }
 }
