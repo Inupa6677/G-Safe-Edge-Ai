@@ -40,6 +40,9 @@ class SummaryPage extends StatelessWidget {
             title: 'Sudden Turn',
             data: summary['sudden_turn'],
           ),
+          SafetyScoreItem(
+            percentage: summary['safety_score']?['percentage']?.toDouble() ?? 0.0,
+          ),
         ],
       ),
     );
@@ -114,6 +117,49 @@ class SummaryItem extends StatelessWidget {
                 ],
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SafetyScoreItem extends StatelessWidget {
+  final double percentage;
+
+  const SafetyScoreItem({super.key, required this.percentage});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 4,
+      margin: const EdgeInsets.only(bottom: 16.0),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            const Icon(Icons.shield, size: 32, color: Colors.green),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Safety Score",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    "${percentage.toStringAsFixed(2)}%",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
